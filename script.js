@@ -1,22 +1,26 @@
 // Assignment Code
 const generateBtn = document.querySelector("#generate");
 
+// Password variables
+let characterLength = ["012345678"];
+let lowerCase = ["abcdefghijklmnopqrstuvwxyz"];
+let upperCase = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+let specialCharacters = ["!@#$%?&*:.,"];
+
 // Write user input for password
 function generatePassword() {
   const criteriaInput = prompt("Select number of characters between the value 8 and 128 for your password.");
-  const parsed = parseInt(criteriaInput);
+  const length = parseInt(criteriaInput);
 
 // Conditions
-  if (isNaN(parsed)) {
+  if (isNaN(length)) {
     alert("Enter a numeric value.");
     return false;
   }
-  else if (parsed <= 8 || parsed >= 128)  {
+  else if (length <= 8 || length >= 128)  {
     alert("Please select password between values 8 and 128.");
     return false;
   }
-
-
 
   const includescharacterLength = confirm("Do you want the password to include numbers?");
   const includeslowerCase = confirm("Do you want the password to include lowercase letters?");
@@ -25,15 +29,46 @@ function generatePassword() {
   
   console.log(includeslowerCase);
 
-// Password variables
-let characterLength = ["012345678"];
-let lowerCase = ["abcdefghijklmnopqrstuvwxyz"];
-let upperCase = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
-let specialCharacters = ["!@#$%?&*:.,"];
+  // Array for characters in password
+  let passwordCharacters = [];
+
+  if (includescharacterLength === "true") {
+    passwordCharacters = passwordCharacters + characterLength;
+    passwordCharacters += characterLength;
+  }
+
+  if (includeslowerCase === "true") {
+    passwordCharacters = passwordCharacters + lowerCase;
+    passwordCharacters += lowerCase;
+  }
+
+  if (includesupperCase === "true") {
+    passwordCharacters = passwordCharacters + upperCase;
+    passwordCharacters += upperCase;
+  }
+
+  if (includesspecialCharacters === "true") {
+    passwordCharacters = passwordCharacters + specialCharacters;
+    passwordCharacters += specialCharacters;
+  }
+
+  else 
+    window.alert("Error.");
+  }
+
+  // Random password generator and return password at the end
+  let password = "";
+
+  for (let i = 0; i < length; i++) {
+    password += passwordCharacters[Math.floor(Math.random() * (passwordCharacters.length))];
+      
+    }
+  
+  
+  
 
 
-
-}
+  
 
 
 // Write password to the #password input
