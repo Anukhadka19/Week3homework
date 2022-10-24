@@ -52,9 +52,7 @@ function generatePassword() {
     passwordCharacters += specialCharacters;
   }
 
-  else 
-    window.alert("Error.");
-  }
+
 
   // Random password generator and return password at the end
   let password = "";
@@ -63,7 +61,9 @@ function generatePassword() {
     password += passwordCharacters[Math.floor(Math.random() * (passwordCharacters.length))];
       
     }
-  
+
+    return password;
+  }
   
   
 
@@ -78,6 +78,7 @@ function writePassword() {
 
   passwordText.value = password;
   console.log(password);
+
 }
 
 // Add event listener to generate button
